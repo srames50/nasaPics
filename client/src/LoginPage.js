@@ -3,14 +3,22 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Button} from 'react-bootstrap';
 
-const LoginPage = ({setRouteString}) => {
+const LoginPage = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     setEmail('');
     setPassword('');
-  });
+  }, []);
+  
+  useEffect(() => {
+    axios.get("http://localhost:8080/user")
+        .then(res => {
+            setAllUsers(res.data.map(item => [item.email, item.password]));
+        })
+  }, []);
 
   const onChangeEmail = e => {
     setEmail(e.target.value.trim());
@@ -21,11 +29,26 @@ const LoginPage = ({setRouteString}) => {
   }
 
   const onSubmit = e => {
-
+    let successful = false;
+    for(let i = 0; i < allUsers.length; i++) {
+        if(allUsers[i][0] === email) {
+            console.log("user exists");
+            if(allUsers[i][1] === password) {
+                successful = true;
+                console.log("Successful login");
+                props.setRouteString("image");
+            } else {
+                alert("invalid password");
+            }
+        }
+    }
+    if(!successful) {
+        alert("invalid email")
+    }
   }
 
   const goToSignUp = () => {
-    setRouteString("signup");
+    props.setRouteString("signup");
   }
 
   return (
@@ -33,7 +56,6 @@ const LoginPage = ({setRouteString}) => {
      <h1 className='loginPageTitle'>Login </h1>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         
          <input  type="text"
              required
              className="form-control"

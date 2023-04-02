@@ -19,11 +19,11 @@ function App() {
     );
   } else if (routeString === "image"){
     return (
-        <NasaImage />
+        <NasaImage setRouteString={setRouteString}/>
     );
   } else if (routeString === "signup"){
     return(
-      <SignupPage/>
+      <SignupPage setRouteString={setRouteString}/>
     );
   }
 }
