@@ -1,12 +1,21 @@
 import axios from 'axios';
 import React from 'react';
 import './apod.css';
+import { Button } from 'react-bootstrap';
 
 class NasaImage extends React.Component{
-  state = {
-    imageUrl: '',
-    description: '',
-    date: ''
+  constructor(props){
+    super(props)
+    this.signOut = this.signOut.bind(this);
+    this.state = {
+      imageUrl: '',
+      description: '',
+      date: ''
+    }
+  }
+
+  signOut(){
+    this.props.setRouteString('login');
   }
 
   componentDidMount() {
@@ -30,6 +39,7 @@ class NasaImage extends React.Component{
             <div className='container'>
                 <img src={this.state.imageUrl} alt="APOD"/>
                 <p className='description'> {this.state.description}</p>
+                <Button onClick={this.signOut}>Sign out</Button>
             </div>
       </div>
 
