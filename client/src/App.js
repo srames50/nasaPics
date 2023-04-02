@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import NasaImage from './apod';
 import './App.css';
+import LoginPage from './LoginPage';
+import { useEffect, useState } from 'react';
+import SignupPage from './SignupPage';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // const [loggedIn, setLoggedIn] = useState({});
+  // const [signUpScreen, setSignUpScreen] = useState({});
+  const [routeString, setRouteString] = useState({});
+  useEffect(() => {
+    setRouteString("login");
+  }, []);
+
+  if(routeString === "login"){
+    return(
+      <LoginPage setRouteString={setRouteString}/>
+    );
+  } else if (routeString === "image"){
+    return (
+        <NasaImage />
+    );
+  } else if (routeString === "signup"){
+    return(
+      <SignupPage/>
+    );
+  }
 }
 
 export default App;
