@@ -9,3 +9,9 @@ This web application is built using Node.js, Express.js, and MongoDB, and utiliz
 - NodeJS
 - Google OAuth
 - Vercel
+
+# Application Features
+- Fetches a new image from NASA every day.
+- Allows users to sign up and login to view the current day's image.
+- Provides Google OAuth as an option for authentication.
+- Persists user account credentials in MongoDB.
