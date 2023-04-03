@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Button} from 'react-bootstrap';
+import './LoginPage.css';
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState('');
@@ -18,6 +19,26 @@ const LoginPage = (props) => {
         .then(res => {
             setAllUsers(res.data.map(item => [item.email, item.password]));
         })
+  }, []);
+
+  function handleCallbackResponse(response){
+    console.log("Encoded JWT ID token: " + response.credential);
+    props.setRouteString("image");
+
+  } 
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "881316253759-a4040bjv4v3c49s47p0ekvcebddc3ngu.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "large"},
+    );
+    
   }, []);
 
   const onChangeEmail = e => {
@@ -52,8 +73,8 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div>
-     <h1 className='loginPageTitle'>Login </h1>
+    <div className='whole'>
+     <h1 className='loginPageTitle'>Login (or create an account) to see the Nasa Picture of the day!</h1>
      <form onSubmit={onSubmit}>
        <div className="form-group">
          <input  type="text"
@@ -77,6 +98,7 @@ const LoginPage = (props) => {
        <br/>
        <div className="form-group">
          <input type="submit" value="Log In" className="login-button" />
+         <div id='signInDiv'></div>
        </div>
      </form>
      <br/>

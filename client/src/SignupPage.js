@@ -14,6 +14,26 @@ const SignupPage = (props) => {
         setVerifyPassword('');
       }, []);
 
+      function handleCallbackResponse(response){
+        console.log("Encoded JWT ID token: " + response.credential);
+        props.setRouteString("image");
+    
+      } 
+    
+      useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+          client_id: "881316253759-a4040bjv4v3c49s47p0ekvcebddc3ngu.apps.googleusercontent.com",
+          callback: handleCallbackResponse
+        });
+    
+        google.accounts.id.renderButton(
+          document.getElementById("signInDiv"),
+          {theme: "outline", size: "large"},
+        );
+        
+      }, []);
+
       const onSubmit= (e) => {
         e.preventDefault();
         if(password === verifyPassword){
@@ -23,8 +43,8 @@ const SignupPage = (props) => {
             }
             console.log(tempObj);
             axios.post('http://localhost:8080/user/add', tempObj)
-                   .then(res => console.log(res.data))
-                   .catch(err => console.log(err));
+               .then(res => console.log(res.data))
+               .catch(err => console.log(err));
             setEmail("")
             setPassword("")
             setVerifyPassword("");
@@ -51,7 +71,7 @@ const SignupPage = (props) => {
 
     return (
         <div>
-          <h1 className='newJSTitle'>New Account</h1>
+          <h1 className='newJSTitle'>Create a New Account</h1>
           <div className="row">
             <div className="col-sm-5">
               <form onSubmit={onSubmit}>
@@ -86,8 +106,9 @@ const SignupPage = (props) => {
                   />
                 </div>
                 <div className="form-group">
-                    <input type="submit" value="Log In" className="login-button" />
+                    <input type="submit" value="Create Account" className="createAcct" />
                 </div>
+                <div id='signInDiv'></div>
                 <br />
               </form>
             </div>

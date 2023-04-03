@@ -1,0 +1,55 @@
+.loginPageTitle, .dontHave, .donthave-button{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.form-group{
+    margin-left: 10px;
+}
+
+.donthave-button, .login-button{
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+.dontHave{
+    font-size: 18px;
+}
+
+.form-control{
+    margin-top: 8px;
+    height: 18px;
+    width: 10%;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 3px solid black;
+  }
+
+.createAcct{
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 45px;
+    margin-left: 15px;
+}
+
+.form-group1{
+    margin-left: 15px;
+}
+

@@ -39,8 +39,10 @@ class NasaImage extends React.Component{
             <div className='container'>
                 <img src={this.state.imageUrl} alt="APOD"/>
                 <p className='description'> {this.state.description}</p>
-                <Button onClick={this.signOut}>Sign out</Button>
             </div>
+            <form align="right">
+                  <Button className='signOut' onClick={this.signOut}>Sign out</Button>
+                </form>
       </div>
 
     );
