@@ -1,6 +1,6 @@
 # NASA Image Gallery Web App
 
-This is a web application that fetches data from NASA and displays a new image every day. Users can sign up, login and view the current day's image. Google OAuth is also provided as an option for authentication.
+This web application is built using Node.js, Express.js, and MongoDB, and utilizes the NASA API to fetch the Astronomy Picture of the Day (APOD) and display it along with its date and description. Users can create an account, log in, view the current day's APOD, and log out. Additionally, users have the option to sign up and log in using their Google account through Google OAuth.
 
 # Technologies Used
 ReactJS, 
